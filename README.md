@@ -1,8 +1,9 @@
 # Ising
 
-Part 1: Determining an Appropriate system size and trajectory length
+## Part 1: Determining Monte Carlo Parameters
   
-  a) A 20 by 20 Ising model was made with JBeta = 0.5 (below the critical temperature). Ran Monte Carlo for 10^6 steps. Tested different initial spin configurations: all up, all down, and randomly oriented:
+   A 2-dimensional spin Ising model of size 20x20 was constructed. The temperature/spin coupling parameter, BJ, was set to 0.5 (below the critical temperature) and 1,000,000 Monte Carlo moves were performed, where each move constituted an attempt to flip a randomly selected spin from the crystal. This simulation was performed with three different initial spin distributions: all up, all down, and randomly oriented:
+   
   [3 side by side gifs. Each gif shows spins(t), E(t), M(t)]
   Repeated this test multiple times to see if the behavior was predictable:
   [time series with multiple trajectories]
@@ -16,14 +17,14 @@ Part 1: Determining an Appropriate system size and trajectory length
   c) Reran the 60x60 test for the same number of cycles as the 20x20 test. A cycle is N^2 steps, so this was 10^6 * (60)^2 / (20)^2 = 9 * 10^6 steps
   Noted things about equilibrium time that did/didn't made these two tests equivalent
   
-Part 2: Exploring Critical Behavior
+## Part 2: Exploring Critical Behavior
   
   a) Computed <E>, <E^2>, <M>, <M^2> after equilibration period:
   b) Temperature dependence of magnetization
   c) Numerical evaluation of sigma_E and sigma_M
   d) Heat capacity (numerical temperature derivative)
   
-Part 3: Effects of a Magnetic Field
+## Part 3: External Magnetic Field
 
   a) Implement this additional Hamiltonian term in your MC code
   b) You can estimate the relative strength of the field by how much the energy of the
