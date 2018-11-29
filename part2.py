@@ -5,10 +5,10 @@ from ising import Ising2D
 def onsager(BJ):
     """ analytic m(BJ)
     """
-    if BJ < 4.4401:
+    if BJ < .44407:
         return 0
     else:
-       return np.pow(1-np.pow(np.sinh(2*BJ),-4),-.125)
+       return np.power(1-np.power(np.sinh(2*BJ),-4),.125)
 
 
 if __name__ == "__main__":
@@ -22,6 +22,8 @@ if __name__ == "__main__":
     e_sigmas = []
     m_avs = []
     m_sigmas = []
+    
+    onsag = []
 
     for temp in temp_range:
 
@@ -38,9 +40,17 @@ if __name__ == "__main__":
         e_sigmas.append(e_sigma) 
         m_avs.append(m_av) 
         m_sigmas.append(m_sigma) 
+        onsag.append(onsager(temp))
 
 
-
+    
     fig, ax = plt.subplots()
-    ax.plot(number_python.arange(0.4,0.56,0.01), flucts, label='mag. sigma')
+    ax.plot(temp_range, onsag, label='Analytic', linewidth=2, color='black')
+    ax.plot(temp_range, m_avs, label='Monte Carlo', color ='blue', marker = '.')
+    ax.fill_between(temp_range, np.array(m_avs), np.array(m_avs)-np.array(m_sigmas), color='blue', alpha = 0.5)
+    ax.set_xlabel(r'$\beta$ J')
+    ax.set_ylabel(r'$\langle$ m $\rangle$')
+    ax.legend(loc='upper left')
+    plt.suptitle('Temperature Dependence of Magnetization')
+    plt.savefig('graphics/temp_mag.png')
     plt.show()
