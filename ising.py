@@ -21,7 +21,7 @@ class Ising2D:
         if not cycles:
             cycles = steps // (self.N ** 2)
 
-        print('\nRunning simulation for %d cycles with initial spins %s' % (cycles, initial_spin))
+        print('Running simulation for %d cycles with initial spins %s' % (cycles, initial_spin))
 
         # clear out data from previous runs 
         self.E = np.zeros(cycles+1) 
@@ -33,7 +33,6 @@ class Ising2D:
         self.fig_viz = plt.figure() # For visualizing the model
         self.ax_viz = self.fig_viz.add_axes([0, 0, 1, 1], frameon=False, aspect=1)
         self.images = [] # image snapshots of the model
-        self.fig_graph, self.ax_graph = plt.subplots()
 
         # reset spins to specified distribution
         if initial_spin is 'up': 
@@ -81,8 +80,6 @@ class Ising2D:
         self.ax_graph.plot(self.E)
         plt.close(self.fig_viz)
 
-        self.fig_graph.savefig('testfile.png')
-        plt.close(self.fig_graph)
 
 
     def monte(self,i,j):
